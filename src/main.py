@@ -10,6 +10,7 @@ from concurrent import futures
 import time
 import sys
 import warnings
+import os
 
 warnings.filterwarnings("ignore")
 
@@ -19,7 +20,7 @@ from api_v3 import core
 from multiprocessing import cpu_count
 
 TA2_API_HOST = '[::]'
-TA2_API_PORT = 45042
+TA2_API_PORT = os.environ['PORT']
 
 def main(argv):
     mode = argv[0]
