@@ -17,7 +17,6 @@ warnings.filterwarnings("ignore")
 import grpc
 import search
 from api_v3 import core
-from multiprocessing import cpu_count
 
 TA2_API_HOST = '[::]'
 TA2_API_PORT = os.environ['PORT']
@@ -29,7 +28,7 @@ def main(argv):
     if mode == "search":
         search.search_phase()
     else:
-        threadpool = futures.ThreadPoolExecutor(max_workers=cpu_count())
+        threadpool = futures.ThreadPoolExecutor(max_workers=int(os.environ['D3MCPU']))
         server = grpc.server(threadpool)
         core.add_to_server(server)
         server_string = '{}:{}'.format(TA2_API_HOST, TA2_API_PORT)
