@@ -39,7 +39,7 @@ class Core(core_pb2_grpc.CoreServicer):
         self._solutions = {}
         self._solution_score_map = {}
         self._search_solutions = {}
-        self.async_message_thread = Pool(cpu_count()) #pool.ThreadPool(processes=1,)
+        self.async_message_thread = Pool(int(os.environ['D3MCPU'])) #pool.ThreadPool(processes=1,)
         self._primitives = primitive_lib.load_primitives()         
         outputDir = os.environ['D3MOUTPUTDIR']
 
